@@ -1,0 +1,16 @@
+<!doctype html>
+
+<html>
+<head>
+<title>Genre List</title>
+<link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+</head>
+<body>
+<h3>Click on a genre:</h3>
+<ul>
+{{range .Model}}
+<li><a href='/home/bygenre/{{.Id}}'>{{.Value.Name}}</a></li>
+{{end}}
+</ul>
+</body>
+</html>

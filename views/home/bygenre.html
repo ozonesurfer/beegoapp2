@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html>
+<head>
+<title>{{.Title}}</title>
+<link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+</head>
+<body>
+<div class="wrap">
+<nav>
+<ul class="menu">
+<li><a href="#">Menu</a>
+<ul>
+<li><a href='/home/genrelist'>Back to genre list</a></li>
+<li><a href='/home/index'>Back to home page</a></li>
+</ul>
+</li> 
+</ul>
+</nav>
+</div>
+{{if .Model}}
+{{range .Model}}
+<table align="center">
+<caption>{{.Value.Name}}</caption>
+<tr>
+  <th>Name</th>
+  <th>Genre</th>
+  <th>Year</th>
+</tr>
+{{range .Value.Albums}}
+<tr>
+<td>{{.Name}}</td>
+<td>{{.GetGenreName $.Request}}</td>
+<td>{{.Year}}</td>
+</tr>
+{{end}}
+</table>
+{{end}}
+{{else}}
+<h3>No model found</h3>
+{{end}}
+</body>
+</html>

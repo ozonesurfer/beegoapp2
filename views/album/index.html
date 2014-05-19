@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+<title>{{.Title}}</title>
+</head>
+<body>
+<div class="wrap">
+<nav>
+<ul class="menu">
+<li><a href="#">Menu</a>
+<ul>
+
+<li><a href="/album/add/{{.Id}}">Add an album</a></li>
+
+<li><a href='/home/index'>Back to home page</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+<table align="center">
+<caption>{{.Band.Name}}</caption>
+<tr>
+  <th>Name</th>
+  <th>Genre</th>
+  <th>Year</th>
+</tr>
+{{if .Band.Albums}}
+{{range .Band.Albums}}
+<tr>
+<td>{{.Name}}</td>
+<td>{{.GetGenreName $.Request}}</td>
+<td>{{.Year}}</td>
+</tr>
+{{end}}
+{{end}}
+</table>
+</body>
+</html>

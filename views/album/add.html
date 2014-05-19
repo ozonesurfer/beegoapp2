@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+<title>{{.Title}}</title>
+</head>
+<body>
+<FORM METHOD=POST ACTION="/album/verify/{{.Id}}">
+<table>
+    <tr>
+        <td>Name:</td>
+        <td><INPUT TYPE="text" NAME="name" required></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Year:</td>
+        <td><INPUT TYPE="number" NAME="year" required /></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Genre:</td>
+        <td><INPUT TYPE="radio" NAME="genretype" value="existing" checked>Choose</input></td>
+        <td><SELECT NAME="genre_id">
+            {{range .Genres}}
+                <OPTION value="{{.Id}}">{{.Value.Name}}</OPTION>
+            {{end}}
+            </SELECT>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><INPUT TYPE="radio" NAME="genretype" value="new">Create</input></td>
+        <td>
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><INPUT TYPE="text" NAME="genre_name" /></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<INPUT TYPE="submit" NAME="submit" value="Add Album" />
+
+</FORM>
+</body>
+</html>

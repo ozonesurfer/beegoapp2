@@ -1,0 +1,41 @@
+<!doctype html>
+
+<html>
+<head>
+<title>CD Catalog</title>
+<link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+</head>
+<body>
+<form action="/band/verify" method="post">
+<table>
+<tr>
+<td>Name:</td><td><input type="text" name="name" required /></td><td />
+</tr>
+<tr>
+<td>Location:</td>
+<td><input type="radio" name="loctype" value="existing" checked >Choose</input></td>
+<td><select name="location_id">
+{{range .Locations}}
+<option value="{{.Id}}">{{.LocToString}}</option>
+{{end}}
+</select></td>
+</tr>
+<tr><td /><td><input type="radio" name="loctype" value="new">Create</input></td><td>
+<table>
+<tr>
+<td>City:</td><td><input type="text" name="city" /></td>
+</tr>
+<tr>
+<td>State:</td><td><input type="text" name="state" /></td>
+</tr> 
+<tr>
+<td>Country:</td><td><input type="text" name="country" /></td>
+</tr> 
+</table>
+</td>
+</tr>
+</table>
+<input type="submit" value="Add Band" />
+</form>
+</body>
+</html>

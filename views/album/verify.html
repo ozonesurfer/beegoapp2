@@ -1,0 +1,23 @@
+<html>
+<head>
+<link rel="stylesheet" href="/static/css/style.css" type="text/css"></link>
+<title>{{.Title}}</title>
+</head>
+
+<div class="wrap">
+
+<nav>
+<ul class="menu">
+<li><a href="#">Menu</a>
+<ul>
+<li><a href="/album/index/{{.Id}}">Back to album list</a></li>
+<li><a href='/home/index'>Home Page</a></li>
+<li><a href="/album/add/{{.Id}}">Back to form</a></li>
+</ul>
+</li> 
+</ul>
+</nav>
+</div>
+<div align="center">{{.Message}}</div>
+</body>
+</html>

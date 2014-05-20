@@ -11,4 +11,6 @@ func init() {
 	beegae.Router("/band/add", &controllers.BandAddController{})
 	beegae.Router("/band/verify", &controllers.BandVerifyController{})
 	beegae.Router("/album/index/:id", &controllers.AlbumIndexController{})
+	beegae.Router("/album/add/:id", &controllers.AlbumAddController{})
+	beegae.Router("/album/verify/:id", &controllers.AlbumVerifyController{})
 }

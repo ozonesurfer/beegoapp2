@@ -92,7 +92,8 @@ func (this *AlbumVerifyController) Post() {
 	case "new":
 		var err error
 		genre := models.Genre{this.GetString("genre_name")}
-		genreId, err = models.AddGenre(genre, c)
+		//	genreId, err = models.AddGenre(genre, c)
+		genreId, err = models.AddObject(genre, *c)
 		log.Printf("genreId =", genreId)
 		if err != nil {
 			message = err.Error()

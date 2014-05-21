@@ -5,7 +5,7 @@ import (
 	"appengine/datastore"
 	"beegoapp2/conf"
 	"log"
-	"net/http"
+	//	"net/http"
 	"reflect"
 	"strings"
 )
@@ -204,19 +204,19 @@ func (this Album) GetGenreName(c *appengine.Context) string {
 	return genre.Name
 }
 
-func GetGenreName(rq *http.Request, genreId *datastore.Key) string {
-	c := appengine.NewContext(rq)
+func GetGenreName(c *appengine.Context, genreId *datastore.Key) string {
+	//	c := appengine.NewContext(rq)
 	var genre Genre
-	datastore.Get(c, genreId, &genre)
+	datastore.Get(*c, genreId, &genre)
 	return genre.Name
 }
 
-func GetBandsByGenre(rq *http.Request, genreId *datastore.Key) ([]*Doc, error) {
-	c := appengine.NewContext(rq)
+func GetBandsByGenre(c *appengine.Context, genreId *datastore.Key) ([]*Doc, error) {
+	//	c := appengine.NewContext(rq)
 	log.Println("Recieved key", genreId)
 	q := datastore.NewQuery(conf.BAND_TYPE).Filter("Albums.GenreId =", genreId)
 	var bands []Band
-	keys, err := q.GetAll(c, &bands)
+	keys, err := q.GetAll(*c, &bands)
 	if err != nil {
 		log.Println("Key retrieval error:", err)
 		return nil, err

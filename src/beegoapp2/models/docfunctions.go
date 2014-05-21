@@ -6,6 +6,8 @@ import (
 	"beegoapp2/conf"
 	"log"
 	"net/http"
+	"reflect"
+	"strings"
 )
 
 type Doc struct {
@@ -114,7 +116,7 @@ func AddBand(value Band, c *appengine.Context) (*datastore.Key, error) {
 	//	c := appengine.NewContext(rq)
 	key := datastore.NewIncompleteKey(*c, conf.BAND_TYPE, nil)
 	_, err := datastore.Put(*c, key, &value)
-
+	log.Println("AddBand received an object of type", reflect.TypeOf(value))
 	return key, err
 }
 
@@ -123,6 +125,33 @@ func AddLocation(value Location, c *appengine.Context) (*datastore.Key, error) {
 	k := datastore.NewIncompleteKey(*c, conf.LOCATION_TYPE, nil)
 	key, err := datastore.Put(*c, k, &value)
 
+	return key, err
+}
+
+func AddObject(value interface{}, c appengine.Context) (*datastore.Key, error) {
+	theType := reflect.TypeOf(value)
+	rawType := theType.String()
+	log.Println("AddObject received an object of type", rawType)
+	strArr := strings.Split(rawType, ".")
+	myType := strArr[1]
+	k := datastore.NewIncompleteKey(c, myType, nil)
+	//	var v interface{}
+	var key *datastore.Key
+	var err error
+	switch value.(type) {
+	case Band:
+		v := value.(Band)
+		key, err = datastore.Put(c, k, &v)
+		break
+	case Location:
+		v := value.(Location)
+		key, err = datastore.Put(c, k, &v)
+		break
+	case Genre:
+		v := value.(Genre)
+		key, err = datastore.Put(c, k, &v)
+	}
+	//	key, err := datastore.Put(c, k, &v)
 	return key, err
 }
 

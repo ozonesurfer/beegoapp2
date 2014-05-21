@@ -50,7 +50,8 @@ func (this *BandVerifyController) Post() {
 		var err error
 		location := models.Location{this.GetString("city"),
 			this.GetString("state"), this.GetString("country")}
-		locationId, err = models.AddLocation(location, c)
+		//	locationId, err = models.AddLocation(location, c)
+		locationId, err = models.AddObject(location, *c)
 		log.Printf("locationId =", locationId)
 		if err != nil {
 			message = err.Error()
@@ -59,7 +60,8 @@ func (this *BandVerifyController) Post() {
 	}
 	if message == "no errors" {
 		band := models.Band{Name: name, LocationId: locationId, Albums: albums}
-		_, err := models.AddBand(band, c)
+		//		_, err := models.AddBand(band, c)
+		_, err := models.AddObject(band, *c)
 		if err != nil {
 			message = "Band add: " + err.Error()
 		}

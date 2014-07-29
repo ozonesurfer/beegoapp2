@@ -6,6 +6,9 @@ import (
 )
 
 func init() {
+	beegae.DirectoryIndex = true
+	beegae.SetStaticPath("/static/css", "static/css")
+	//	beegae.StaticDir["/static"] = "static"
 	beegae.Router("/", &controllers.MainController{})
 	beegae.Router("/home/index", &controllers.MainController{})
 	beegae.Router("/band/add", &controllers.BandAddController{})
